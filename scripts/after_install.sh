@@ -6,7 +6,7 @@ cd /home/ubuntu/app
 python3.11 -m venv .venv
 source .venv/bin/activate
 
-pip install -r dev-requirements.txt
+pip install -r requirements.txt
 if [ "$DEPLOYMENT_GROUP_NAME" == "dev-api" ]; then
 cp /home/ubuntu/app/server-config/dev-fatmug-gunicorn-supervisor.conf /etc/supervisor/conf.d
 fi
