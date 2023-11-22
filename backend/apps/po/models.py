@@ -57,9 +57,10 @@ def po_matrix_calculation(sender, instance, created, **kwargs):
     if not created and not instance.status == instance.__previous_status:
         query = PO.objects.filter(
             vendor=instance.vendor)
+        query_count = query.count()
         query_completed = query.filter(status=Status.COMPLETED)
         query_completed_count = query_completed.count()
-        if instance.status == Status.COMPLETED:
+        if instance.status == Status.COMPLETED and query_completed_count>0:
             on_time_delivery = query_completed.filter(actual_delivery_date__lte=F(
                 'expected_delivery_date')).count()/query_completed_count
             quality_rating = query_completed.filter(quality_rating__isnull=False).aggregate(
@@ -67,8 +68,9 @@ def po_matrix_calculation(sender, instance, created, **kwargs):
             fields_to_update["on_time_delivery_rate"] = on_time_delivery
             fields_to_update["quality_rating_avg"] = quality_rating.get(
                 "quality_rating__avg")
-        fulfillment_rate = query_completed_count/query.count()
-        fields_to_update["fulfillment_rate"] = fulfillment_rate
+        if query_count>0:
+            fulfillment_rate = query_completed_count/query_count
+            fields_to_update["fulfillment_rate"] = fulfillment_rate
 
     if instance.acknowledgment_date and not instance.__previous_acknowledgment_date == instance.acknowledgment_date:
         average_response_time = PO.objects.filter(

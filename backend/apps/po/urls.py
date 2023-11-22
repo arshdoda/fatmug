@@ -9,5 +9,6 @@ urlpatterns = [
     path('<int:pk>/', PORetrieveUpdateDestroyAPIView.as_view(),
          name='retrieve-update-delete-po'),
     path('<int:pk>/acknowledge', POAcknowledgeAPIView.as_view(),
-         name='acknowledge-po')
+         name='acknowledge-po'),
+    path('calculate_matrix/', POMatrixAPIView.as_view(), name='po-matrix'),
 ]
