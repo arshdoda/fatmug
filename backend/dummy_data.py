@@ -19,7 +19,7 @@ def random_date(start, end):
 
 
 vendor_list = []
-for i in range(1, 6):
+for i in range(1, 6): # Range can be modified as reuired
     v = {"name": f"Vendor {i}", "contact_details": f"Phone Number {i}",
          "address": f"Address {i}", "on_time_delivery_rate": 0.0, "quality_rating_avg": 0.0, 
          "average_response_time": 0.0, "fulfillment_rate": 0.0}
@@ -28,7 +28,7 @@ for i in range(1, 6):
 Vendor.objects.bulk_create(vendor_list)
 
 po_list = []
-for i in range(1, 100001):
+for i in range(1, 100001): # Range can be modified as reuired
     order_date = random_date("2023-11-01", "2023-11-22")
     expected_delivery_date = order_date + timezone.timedelta(days=random.randint(1,7))
     
