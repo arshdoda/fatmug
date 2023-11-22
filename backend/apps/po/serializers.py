@@ -8,7 +8,7 @@ class PoSerializer(serializers.ModelSerializer):
     expected_delivery_date = serializers.DateTimeField(format=settings.DATE_TIME_FORMAT)    
     actual_delivery_date = serializers.DateTimeField(format=settings.DATE_TIME_FORMAT)    
     issue_date = serializers.DateTimeField(format=settings.DATE_TIME_FORMAT)    
-    acknowledgment_date = serializers.DateTimeField(format=settings.DATE_TIME_FORMAT)    
+    acknowledgment_date = serializers.DateTimeField(format=settings.DATE_TIME_FORMAT, required=False)    
     
     class Meta:
         model = PO

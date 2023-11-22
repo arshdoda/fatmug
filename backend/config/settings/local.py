@@ -33,6 +33,6 @@ if DEBUG:
     RENDERER_CLASS.append(
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
-    # AUTHENTICATION_CLASSES.append(
-    #     'rest_framework.authentication.SessionAuthentication',
-    # )
+    AUTHENTICATION_CLASSES.append(
+        'rest_framework.authentication.SessionAuthentication',
+    )

@@ -136,10 +136,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 RENDERER_CLASS = ['rest_framework.renderers.JSONRenderer']
-# AUTHENTICATION_CLASSES = [
-#     'rest_framework_simplejwt.authentication.JWTAuthentication'
-#     # 'common.authenticate.CustomAuthentication'
-# ]
+AUTHENTICATION_CLASSES = [
+    'rest_framework_simplejwt.authentication.JWTAuthentication'
+]
 
 
 SIMPLE_JWT = {
@@ -157,10 +156,12 @@ SIMPLE_JWT = {
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': RENDERER_CLASS,
-    # 'DEFAULT_AUTHENTICATION_CLASSES': AUTHENTICATION_CLASSES,
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated',
-    # )
+    'DEFAULT_AUTHENTICATION_CLASSES': AUTHENTICATION_CLASSES,
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+        'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
 
 }
 
